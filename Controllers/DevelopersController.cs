@@ -28,6 +28,7 @@ namespace Lab4.Controllers
         // GET: DeveloperController
         public ActionResult Index()
         {
+            
             return View(Singleton.Instance.DevelopersList);
         }
 
@@ -113,10 +114,11 @@ namespace Lab4.Controllers
                 return View();
             }
         }
-        //carga csv
+        //carga csv------------------------------------------------------------------------>
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
+           
             if (postedFile != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "Uploads");
@@ -143,7 +145,7 @@ namespace Lab4.Controllers
                             if (firstRow)
                             {
 
-                                foreach (string cell in row.Split(','))
+                                foreach (string cell in row.Split(','))//Sirve para no tomar el encabezado del archivo
                                 {
 
                                     //dt.Columns.Add(cell.Trim());
@@ -162,7 +164,7 @@ namespace Lab4.Controllers
                                 string cell2 = "";
                                 foreach (string cell in row.Split(','))
                                 {
-                                    if (cell.Substring(0, 1) != "\"" && encontrar == 0)
+                                    if (cell.Substring(0, 1) != "\"" && encontrar == 0) //identifica que las comas del texto sean validas y no las tome como la delimitación por comas
                                     {
                                         //dt.Rows[dt.Rows.Count - 1][i] = cell.Trim();
                                         NodoM[cont] = cell.Trim();
@@ -187,12 +189,14 @@ namespace Lab4.Controllers
 
                                     }
                                 }
+                                Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
+                                Singleton.Instance.TablaDePrueba.Pos(Convert.ToInt16(NodoM[3])).Agregar(Convert.ToInt32(NodoM[3]),AgregarDeveloper);//Se van almacenando a la tabla hash
+
 //parte para agregar en cada iteración
                             }
                         }
                     }
-                }
-               
+                }                              
                 return RedirectToAction(nameof(Index));
             }
 
@@ -200,7 +204,7 @@ namespace Lab4.Controllers
             return View();
 
         }
-        //termina carga de csv
+        //termina carga de csv------->
 
 
 

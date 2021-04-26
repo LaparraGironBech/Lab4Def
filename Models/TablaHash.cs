@@ -130,7 +130,7 @@ namespace Lab4.Models
         }
 
         //Para las colisiones----------------------------------------------------------------------------->
-        public ObjetoHash<K,V> BuscarObjeto(K key) //Búsqueda por key se hara así, pues las colisiones se hará una búsqueda secuencial
+        public V BuscarObjeto(K key) //Búsqueda por key se hara así, pues las colisiones se hará una búsqueda secuencial
         {
             ObjetoHash<K,V> Valor = new ObjetoHash<K,V>();
             int cont = 0;
@@ -141,15 +141,15 @@ namespace Lab4.Models
                     if (key.CompareTo(ObtenerPos(cont).Key ) == 0)
                     {
                         Valor = ObtenerPos(cont);
-                        return Valor;
+                        return Valor.Value;
                     }
                     cont++;
                 }
-                return Valor;
+                return Valor.Value;
             }
             else
             {
-                return Valor;
+                return Valor.Value;
             }
         }
 
