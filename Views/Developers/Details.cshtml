@@ -1,36 +1,74 @@
-﻿@model Lab4.Models.Developers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Data;
+@*@model DataTable*@
+@{
+    Layout = null;
+}
+@model IEnumerable< Lab4.Models.Developer>
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "IndexVer";
 }
+<!DOCTYPE html>
 
-<h1>Details</h1>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <style>
+        .upload-boximport {
+            font-size: 16px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 5px 5px 10px black;
+            width: 100px;
+            height: 35px;
+            outline: none;
+        }
 
-<div>
-    <h4>Developers</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+        .upload-box {
+            font-size: 16px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 5px 5px 10px black;
+            width: 300px;
+            height: 35px;
+            outline: none;
+        }
+
+        ::-webkit-file-upload-button {
+            color: white;
+            background: #206a5d;
+            padding: 6px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 1px 0 1px 1px #6b4559;
+            outline: none;
+        }
+
+            ::-webkit-file-upload-button:hover {
+                background: #438a5e;
+            }
+
+        .upload-boximport:hover {
+            background: #438a5e;
+        }
+    </style>
+
+
+
+    <form asp-controller="Developers" asp-action="Index" method="post" enctype="multipart/form-data">
+
+        <input type="file" class="upload-box" name="postedFile" />
+
+        <input type="submit" class="upload-boximport" value="Import" />
+
+
+    </form>
+
+    
+</body>
+
+</html>
