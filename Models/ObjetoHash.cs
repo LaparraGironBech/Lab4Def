@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lab4.Models
 {
-    public class ObjetoHash <K, V> where K : IComparable where V : IComparable //identifica de que tipo será el key y de que tipo serra el valor
+    public class ObjetoHash <K, V> where K : IComparable  //identifica de que tipo será el key y de que tipo serra el valor
     {
         public int CompareTo(object? obj)
         {

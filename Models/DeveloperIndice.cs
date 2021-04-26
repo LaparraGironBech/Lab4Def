@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 namespace Lab4.Models
 {
     public class DeveloperIndice
-    {
-
+    {       
     }
 }

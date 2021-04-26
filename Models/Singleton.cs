@@ -9,6 +9,7 @@ namespace Lab4.Models
     {
         private readonly static Singleton _instance = new Singleton();
         public List<Developers> DevelopersList;
+        public TablaHash<int, Developer> TablaDePrueba = new TablaHash<int, Developer>();
         private Singleton()
         {
             DevelopersList = new List<Developers>();

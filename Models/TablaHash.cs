@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lab4.Models
 {
-    public class TablaHash<K,V> where K: IComparable where V:IComparable //Cada objeto de la tabla hash será una lista esto para cuando hayan colisiones
+    public class TablaHash<K,V> where K: IComparable//Cada objeto de la tabla hash será una lista esto para cuando hayan colisiones
     {
         //colisiones  son los objetos contenidos en cada casilla hash
         public int cantidadcolisiones; //Cuantas colisiones hay
@@ -44,8 +44,9 @@ namespace Lab4.Models
 
         }
 
-        public void Agregar(ObjetoHash<K,V> Nom2) // agrega al final de la lista
+        public void Agregar(K key, V value) // agrega al final de la lista
         {
+            ObjetoHash<K, V> Nom2 = new ObjetoHash<K, V>(key,value);
             if (cantidadcolisiones == 0)
             {
                 agregarcolisioninicio(Nom2);

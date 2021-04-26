@@ -7,18 +7,18 @@ namespace Lab4.Models
 {
     public class Developer
     {
-        string titulo { get; set; }
-        string descripcion { get; set; }
-        string proyecto { get; set; }
-        int prioridad { get; set; }
-        string fecha { get; set; }
+        public string titulo { get; set; }
+        public string descripcion { get; set; }
+        public string proyecto { get; set; }
+        public int prioridad { get; set; }
+        public string fecha { get; set; }
 
         public Developer(string Nombre,string Descripcion,string Proyecto,int Prioridad,string Fecha)
         {
             titulo = Nombre;
             descripcion = Descripcion;
             proyecto = Proyecto;
-            prioridad = prioridad;
+            prioridad = Prioridad;
             fecha = Fecha;
         }
     }
