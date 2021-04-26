@@ -157,7 +157,7 @@ namespace Lab4.Controllers
                                 //dt.Rows.Add();
                                 int i = 0;
                                 int cont = 0;
-                                string[] NodoM = new string[6] { "", "", "", "", "", "" };
+                                string[] NodoM = new string[5] { "", "", "", "", ""};
                                 int encontrar = 0;
                                 string cell2 = "";
                                 foreach (string cell in row.Split(','))
