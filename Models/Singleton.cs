@@ -11,12 +11,14 @@ namespace Lab4.Models
         public List<Developers> DevelopersList;
         public TablaHash<int, Developer> TablaDePrueba = new TablaHash<int, Developer>();
         public List<DeveloperIndice> prioridad = new List<DeveloperIndice>();
+        public List<ProjectsManual> ProjectsManualList = new List<ProjectsManual>();
         //public ColaDePrioridad<DeveloperIndice> Heap = new ColaDePrioridad<DeveloperIndice>(20);
         //Se crea  la tabla de 10 
             
     private Singleton()
         {
             DevelopersList = new List<Developers>();
+            ProjectsManualList = new List<ProjectsManual>(); 
 
             //<---------Dar tamaño a la tabla hash------------>
             for (int i = 0; i < 10; i++)
