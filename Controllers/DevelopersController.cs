@@ -191,12 +191,15 @@ namespace Lab4.Controllers
                                 }
                                 Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
                                 Singleton.Instance.TablaDePrueba.Pos(Convert.ToInt16(NodoM[3])).Agregar(Convert.ToInt32(NodoM[3]),AgregarDeveloper);//Se van almacenando a la tabla hash
+                                Singleton.Instance.Heap.insertKey(NodoM[0], Convert.ToInt32(NodoM[3]));
 
 //parte para agregar en cada iteración
                             }
                         }
                     }
-                }                              
+                }
+                Console.WriteLine(Singleton.Instance.prioridad);
+                Console.ReadKey();
                 return RedirectToAction(nameof(Index));
             }
 

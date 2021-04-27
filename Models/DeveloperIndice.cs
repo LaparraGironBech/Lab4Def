@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace Lab4.Models
 {
-    public class DeveloperIndice
-    {       
+    public class DeveloperIndice : IComparable
+    {
+        public int prioridad;
+        public string titulo;
+        public int CompareTo(object? obj)
+        {
+            return 0;
+        }
     }
 }

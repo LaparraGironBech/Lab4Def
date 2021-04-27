@@ -34,14 +34,18 @@ namespace Lab4.Models
         {
             return 2 * key + 2;
         }
-        public bool insertKey(T value, int key)
+        public bool insertKey(string title, int key)
         {
+            DeveloperIndice temp = new DeveloperIndice();
+            temp.prioridad = key;
+            temp.titulo = title;
             if (tamaño_A == capacidad)
             {
                 return false;
             }
             int i = tamaño_A;
             heapArray[i] = key;
+            Singleton.Instance.prioridad.Insert(i,temp);
             tamaño_A++;
             while (i != 0 && heapArray[i] < heapArray[Padre(i)])
             {

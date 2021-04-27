@@ -10,6 +10,8 @@ namespace Lab4.Models
         private readonly static Singleton _instance = new Singleton();
         public List<Developers> DevelopersList;
         public TablaHash<int, Developer> TablaDePrueba = new TablaHash<int, Developer>();
+        public List<DeveloperIndice> prioridad = new List<DeveloperIndice>();
+        public ColaDePrioridad<DeveloperIndice> Heap;
         //Se crea  la tabla de 10 
             
     private Singleton()
