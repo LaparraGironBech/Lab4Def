@@ -12,7 +12,7 @@ namespace Lab4.Models
         public List<ProjectsManual> ProjectsManualList;
         public TablaHash<int, Developer> TablaDePrueba = new TablaHash<int, Developer>();
         public List<DeveloperIndice> prioridad = new List<DeveloperIndice>();
-        public ColaDePrioridad<DeveloperIndice> Heap;
+        //public ColaDePrioridad<DeveloperIndice> Heap = new ColaDePrioridad<DeveloperIndice>(20);
         //Se crea  la tabla de 10 
             
     private Singleton()

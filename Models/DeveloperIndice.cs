@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 namespace Lab4.Models
 {
     public class DeveloperIndice : IComparable
-    {
-        public int prioridad;
-        public string titulo;
+    {        
         public int CompareTo(object? obj)
         {
-            return 0;
+            DeveloperIndice value = (DeveloperIndice)obj;
+            return titulo.CompareTo(value.titulo);
+        }
+        public int prioridad { get; set; }
+        public string titulo { get; set; }
+
+        public DeveloperIndice(string Titulo, int Prioridad)
+        {
+            prioridad = Prioridad;
+            titulo = Titulo;
         }
     }
 }
