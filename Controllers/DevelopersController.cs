@@ -53,7 +53,7 @@ namespace Lab4.Controllers
         {
             try
             {
-                var newDevelopers = new Models.Developers
+                var newDevelopers = new Developers
                 {
                     Id = Convert.ToInt32(collection["Id"]),
                     Nombre = collection["Nombre"],
