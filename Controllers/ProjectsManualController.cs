@@ -54,9 +54,13 @@ namespace Lab4.Controllers
                 if (Existe == false)
                 {
                     Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(nuevo.titulo, nuevo);//Se van almacenando a la tabla hash
+                    Singleton.Instance.ProjectsManualList.Add(newProjectsManual);
                 }
-
-                Singleton.Instance.ProjectsManualList.Add(newProjectsManual);
+                else
+                {
+                    //texto que no se agrego porque hay titulo repetido
+                }
+               
                 return RedirectToAction(nameof(Index));
             }
             catch

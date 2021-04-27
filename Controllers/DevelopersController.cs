@@ -205,9 +205,10 @@ namespace Lab4.Controllers
                         }
                     }
                 }
-                Console.WriteLine(Singleton.Instance.prioridad);
-                Console.ReadKey();
-                return RedirectToAction(nameof(Create));
+               // Console.WriteLine(Singleton.Instance.prioridad);
+               // Console.ReadKey();
+               return RedirectToAction(nameof(Index));
+                //return View();
             }
 
 
