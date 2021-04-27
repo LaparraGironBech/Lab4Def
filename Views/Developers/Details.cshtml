@@ -14,7 +14,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Carga de datos de developer</title>
 </head>
 <body>
     <style>
@@ -55,6 +55,24 @@
         .upload-boximport:hover {
             background: #438a5e;
         }
+
+        .Botones {
+            width: 100px;
+            height: 50px;
+            color: white;
+            background: #ff6a10;
+            border: none;
+            border-radius: 2px;
+        }
+
+            .Botones:hover {
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -o-transform: scale(1);
+                -webkit-transition-duration: 0.5s;
+                -moz-transition-duration: 0.5s;
+                -o-transition-duration: 0.5s;
+            }
     </style>
 
 
@@ -72,3 +90,11 @@
 </body>
 
 </html>
+<div style="margin: 0% 0% 10% 40% !important;float: left;" class="d-grid gap-2">
+
+    <a asp-controller="ProjectsManual" asp-action="Index"><button class="Botones" type="button">Ver Proyectos</button></a>  <br /><br />
+
+   
+
+
+</div>

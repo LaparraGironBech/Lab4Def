@@ -7,12 +7,17 @@ namespace Lab4.Models
 {
     public class Developers 
     {
-
         [Required]
+
         public int? Id { get; set; }
+        [Required]
         public string Nombre { get; set; }
         
         [Required]
         public string Apellido { get; set; }
+
+
+        
     }
+    
 }
