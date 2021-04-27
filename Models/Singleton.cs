@@ -9,7 +9,7 @@ namespace Lab4.Models
     {
         private readonly static Singleton _instance = new Singleton();
         public List<Developers> DevelopersList;
-        public TablaHash<int, Developer> TablaDePrueba = new TablaHash<int, Developer>();
+        public TablaHash<string, Developer> HASHTABLE = new TablaHash<string, Developer>();
         public List<DeveloperIndice> prioridad = new List<DeveloperIndice>();
         public List<ProjectsManual> ProjectsManualList = new List<ProjectsManual>();
         //public ColaDePrioridad<DeveloperIndice> Heap = new ColaDePrioridad<DeveloperIndice>(20);
@@ -23,7 +23,7 @@ namespace Lab4.Models
             //<---------Dar tamaño a la tabla hash------------>
             for (int i = 0; i < 10; i++)
             {
-                TablaDePrueba.AgregarFinalLista();
+                HASHTABLE.AgregarFinalLista();
             }
 
         }

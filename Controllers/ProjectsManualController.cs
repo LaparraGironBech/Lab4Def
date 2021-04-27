@@ -41,9 +41,21 @@ namespace Lab4.Controllers
                     descripcion = collection["descripcion"],
                     proyecto = collection["proyecto"],
                     prioridad = Convert.ToInt32(collection["prioridad"]),
-                    fecha = collection["proyecto"]
+                    fecha = collection["fecha"]
 
                 };
+                //Agregar a mi tabla hash
+                Developer nuevo = new Developer(newProjectsManual.titulo, newProjectsManual.descripcion, newProjectsManual.proyecto, newProjectsManual.prioridad, newProjectsManual.fecha);
+                int codigoHash = FHash(nuevo.titulo);//genera el código hash
+
+                //Verificar si el titulo no es repetido si no es repetido lo agrega
+                bool Existe = false;
+                Existe = Singleton.Instance.HASHTABLE.Pos(codigoHash).Existe(nuevo.titulo);
+                if (Existe == false)
+                {
+                    Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(nuevo.titulo, nuevo);//Se van almacenando a la tabla hash
+                }
+
                 Singleton.Instance.ProjectsManualList.Add(newProjectsManual);
                 return RedirectToAction(nameof(Index));
             }
@@ -94,5 +106,22 @@ namespace Lab4.Controllers
                 return View();
             }
         }
+        public int FHash(string titulo)// Nuestra función hash
+        {
+
+            titulo = titulo.ToLower(); //convertir todo a minuscula 
+            int conversion = 0; //devolverá el valor en número
+            char letra; // detecta letra por letra de la cadena
+            for (int i = 0; i < titulo.Length; i++)
+            {
+                letra = Convert.ToChar(titulo.Substring(i, 1));
+                conversion = conversion + Convert.ToInt32(letra);
+
+            }
+
+            conversion = conversion % 10;
+            return conversion;
+        }
+
     }
 }
