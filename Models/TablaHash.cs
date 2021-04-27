@@ -152,7 +152,30 @@ namespace Lab4.Models
                 return Valor.Value;
             }
         }
-
+        //Ver si hay valor repetido
+        public bool Existe(K key) //verifica si ya existe un titulo
+        {
+            bool existe = false;
+            int cont = 0;
+            if (cantidadcolisiones > 0)
+            {
+                for (int i = 0; i < cantidadcolisiones; i++)
+                {
+                    if (key.CompareTo(ObtenerPos(cont).Key) == 0)
+                    {
+                        existe = true;
+                        return existe;
+                    }
+                    cont++;
+                }
+                return existe;
+            }
+            else
+            {
+                return existe;
+            }
+        }
+        //Buscar posisión
         public int BuscarPos(K key) //Búsqueda por key se hara así, pues las colisiones se hará una búsqueda secuencial
         {
             ObjetoHash<K, V> Valor = new ObjetoHash<K, V>();

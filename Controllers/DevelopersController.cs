@@ -118,7 +118,7 @@ namespace Lab4.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
-           
+
             if (postedFile != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "Uploads");
@@ -159,7 +159,7 @@ namespace Lab4.Controllers
                                 //dt.Rows.Add();
                                 int i = 0;
                                 int cont = 0;
-                                string[] NodoM = new string[5] { "", "", "", "", ""};
+                                string[] NodoM = new string[5] { "", "", "", "", "" };
                                 int encontrar = 0;
                                 string cell2 = "";
                                 foreach (string cell in row.Split(','))
@@ -189,14 +189,24 @@ namespace Lab4.Controllers
 
                                     }
                                 }
+ //parte para agregar en cada iteración ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ //Llenar Tablahash
                                 Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
-                                Singleton.Instance.TablaDePrueba.Pos(Convert.ToInt16(NodoM[3])).Agregar(Convert.ToInt32(NodoM[3]),AgregarDeveloper);//Se van almacenando a la tabla hash
+                                int codigoHash = FHash(NodoM[0]);//genera el código hash
 
-//parte para agregar en cada iteración
+                                //Verificar si el titulo no es repetido si no es repetido lo agrega
+                                bool Existe = false;
+                              Existe = Singleton.Instance.HASHTABLE.Pos(codigoHash).Existe(AgregarDeveloper.titulo);
+                                if(Existe==false)
+                                {
+                                 Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(NodoM[0], AgregarDeveloper);//Se van almacenando a la tabla hash
+                                }
+
                             }
                         }
                     }
-                }                              
+                }
+               
                 return RedirectToAction(nameof(Index));
             }
 
@@ -206,8 +216,22 @@ namespace Lab4.Controllers
         }
         //termina carga de csv------->
 
+        public int FHash(string titulo)// Nuestra función hash
+        {
 
+            titulo = titulo.ToLower(); //convertir todo a minuscula 
+            int conversion = 0; //devolverá el valor en número
+            char letra; // detecta letra por letra de la cadena
+            for (int i = 0; i < titulo.Length; i++)
+            {
+                letra = Convert.ToChar(titulo.Substring(i, 1));
+                conversion = conversion + Convert.ToInt32(letra);
 
+            }
+
+            conversion = conversion % 10;
+            return conversion;
+        }
 
 
     }
