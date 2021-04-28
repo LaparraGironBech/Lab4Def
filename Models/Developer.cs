@@ -11,7 +11,7 @@ namespace Lab4.Models
         public string descripcion { get; set; }
         public string proyecto { get; set; }
         public int prioridad { get; set; }
-        public string fecha { get; set; }        
+        public string fecha { get; set; }
 
         public Developer(string Nombre,string Descripcion,string Proyecto,int Prioridad,string Fecha)
         {
@@ -19,7 +19,7 @@ namespace Lab4.Models
             descripcion = Descripcion;
             proyecto = Proyecto;
             prioridad = Prioridad;
-            fecha = Fecha;            
+            fecha = Fecha;
         }
     }
 }

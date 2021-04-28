@@ -17,7 +17,7 @@ namespace Lab4.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             //for (int i = 0; i <= 10; i++)

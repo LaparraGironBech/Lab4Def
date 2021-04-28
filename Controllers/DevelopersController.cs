@@ -28,16 +28,17 @@ namespace Lab4.Controllers
         // GET: DeveloperController
         public ActionResult Index()
         {
-
+            
             return View(Singleton.Instance.DevelopersList);
         }
 
         // GET: DeveloperController/Details/5
         public ActionResult Details(int id)
         {
-            var ViewDevelopers = Singleton.Instance.DevelopersList.Find(x => x.Id == id);
+             var ViewDevelopers = Singleton.Instance.DevelopersList.Find(x => x.Id == id);
+        // var ViewDevelopers = Singleton.Instance.DevelopersList[id];
             return View(ViewDevelopers);
-
+            
         }
 
         // GET: DeveloperController/Create
@@ -45,7 +46,14 @@ namespace Lab4.Controllers
         {
             return View();
         }
-
+        public IActionResult Inicio()
+        {
+            return View();
+        }
+        public IActionResult Ingresar()
+        {
+            return View();
+        }
         // POST: DeveloperController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,18 +61,22 @@ namespace Lab4.Controllers
         {
             try
             {
-                var newDevelopers = new Developers
-                {
-                    Id = Convert.ToInt32(collection["Id"]),
-                    Nombre = collection["Nombre"],
-                    Apellido = collection["Apellido"]
+                //var newDevelopers = new Developers()
+                //{
+                //    Id = Convert.ToInt32(collection["Id"]),
+                //    Nombre = collection["Nombre"],
+                //    Apellido = collection["Apellido"]
 
-                };
+                //};           
+
+
+
+                var newDevelopers = new Developers(Convert.ToInt32(collection["Id"]), collection["Nombre"], collection["Apellido"]);
                 Singleton.Instance.DevelopersList.Add(newDevelopers);
                 return RedirectToAction(nameof(Index));
 
 
-
+                
             }
             catch
             {
@@ -99,6 +111,7 @@ namespace Lab4.Controllers
         {
             return View();
         }
+       
 
         // POST: DeveloperController/Delete/5
         [HttpPost]
@@ -118,7 +131,7 @@ namespace Lab4.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
-
+            int C = -1;
             if (postedFile != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "Uploads");
@@ -162,8 +175,10 @@ namespace Lab4.Controllers
                                 string[] NodoM = new string[5] { "", "", "", "", "" };
                                 int encontrar = 0;
                                 string cell2 = "";
+                               
                                 foreach (string cell in row.Split(','))
                                 {
+
                                     if (cell.Substring(0, 1) != "\"" && encontrar == 0) //identifica que las comas del texto sean validas y no las tome como la delimitación por comas
                                     {
                                         //dt.Rows[dt.Rows.Count - 1][i] = cell.Trim();
@@ -189,51 +204,62 @@ namespace Lab4.Controllers
 
                                     }
                                 }
-                                //parte para agregar en cada iteración ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-                                //Llenar Tablahash
-                                Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
-                                int codigoHash = FHash(NodoM[0]);//genera el código hash                                
-
-                                //Verificar si el titulo no es repetido si no es repetido lo agrega
-                                bool Existe = false;
-                                Existe = Singleton.Instance.HASHTABLE.Pos(codigoHash).Existe(AgregarDeveloper.titulo);
-                                if (Existe == false)
+                                if (NodoM[0] != "Developer") //agregar tareas
                                 {
-                                    //Singleton.Instance.DevelopersList[0].adfadfasd;
-                                    Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(NodoM[0], AgregarDeveloper);//Se van almacenando a la tabla hash                                                                          
-                                    Singleton.Instance.DevelopersList[0].colaDeveloper.insertar(Convert.ToInt16(NodoM[3]), NodoM[0]);
+                                    //parte para agregar en cada iteración :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                    //Llenar Tablahash
+                                    Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
+                                    int codigoHash = FHash(NodoM[0]);//genera el código hash
+
+                                   
+                                    bool Existe = false; //Verificar si el titulo no es repetido si no es repetido lo agrega                               
+                                    Existe = Singleton.Instance.DevelopersList[C].HASHTABLE.Pos(codigoHash).Existe(AgregarDeveloper.titulo);
+                                    if (Existe == false)
+                                    {    
+                                        Singleton.Instance.DevelopersList[C].HASHTABLE.Pos(codigoHash).Agregar(NodoM[0], AgregarDeveloper);//Se van almacenando a la tabla hash
+                                        Singleton.Instance.DevelopersList[C].colaDeveloper.insertar(Convert.ToInt16(NodoM[3]), NodoM[0]);
+                                        
+                                    }
+
                                 }
+                                else //agregar developers
+                                {
+                                    var newDevelopers = new Developers(Convert.ToInt16(NodoM[1]), NodoM[2], NodoM[3]);
+                                    Singleton.Instance.DevelopersList.Add(newDevelopers);
+                                    C++;
+                                   
+                                }
+                                    
                             }
                         }
                     }
-                }
-                Console.ReadKey();
-                return RedirectToAction(nameof(Create));
+                }                             
             }
-            // Console.WriteLine(Singleton.Instance.prioridad);
-            // Console.ReadKey();
-            return RedirectToAction(nameof(Index));
-            //return View();
-        }
-               
-        //termina carga de csv------->
-        public int FHash(string titulo)// Nuestra función hash
-        {
 
-            titulo = titulo.ToLower(); //convertir todo a minuscula 
-            int conversion = 0; //devolverá el valor en número
-            char letra; // detecta letra por letra de la cadena
-            for (int i = 0; i < titulo.Length; i++)
+
+            return RedirectToAction(nameof(Ingresar));
+
+        }
+            //termina carga de csv------->
+            public int FHash(string titulo)// Nuestra función hash
             {
-                letra = Convert.ToChar(titulo.Substring(i, 1));
-                conversion = conversion + Convert.ToInt32(letra);
 
+                titulo = titulo.ToLower(); //convertir todo a minuscula 
+                int conversion = 0; //devolverá el valor en número
+                char letra; // detecta letra por letra de la cadena
+                for (int i = 0; i < titulo.Length; i++)
+                {
+                    letra = Convert.ToChar(titulo.Substring(i, 1));
+                    conversion = conversion + Convert.ToInt32(letra);
+
+                }
+
+                conversion = conversion % 10;
+                return conversion;
             }
 
-            conversion = conversion % 10;
-            return conversion;
+
+
+
         }
-    }
-
 }
-

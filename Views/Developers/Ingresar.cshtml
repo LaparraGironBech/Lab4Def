@@ -1,0 +1,32 @@
+﻿<style>
+    .Botones {
+        width: 400px;
+        height: 50px;
+        color: white;
+        background: #ff6a10;
+        border: none;
+        border-radius: 3px;
+        align-content:center;
+    }
+
+        .Botones:hover {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1);
+            -webkit-transition-duration: 0.5s;
+            -moz-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+        }
+</style>
+<center>
+<h1>¿Qué usuario eres?</h1><h3>Elige tu usuario</h3>
+<div style="margin: 5% 0% 20% 32% !important;float: left;" class="d-grid gap-2">
+
+    <a asp-controller="Developers" asp-action="Index"><button class="Botones" type="button">Project Manager</button></a>  <br /><br />
+
+    <a asp-controller="Developers" asp-action="Index"><button class="Botones" type="button">Developer</button></a>  <br /><br />
+
+
+</div></center>
+<br />
+<br />

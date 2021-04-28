@@ -19,6 +19,17 @@ namespace Lab4.Models
         [Required]
         public string fecha { get; set; }
 
-       
+        public ProjectsManual(string TITULO, string DESCRIPCION, string PROYRECTO, int PRIORIDAD, string FECHA)
+        {
+            this.titulo = TITULO;
+            this.descripcion = DESCRIPCION;
+            this.proyecto = PROYRECTO;
+            this.prioridad = PRIORIDAD;
+            this.fecha = FECHA;
+        }
+        public ProjectsManual()
+        {
+           
+        }
     }
 }

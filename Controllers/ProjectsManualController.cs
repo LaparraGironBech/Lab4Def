@@ -12,6 +12,24 @@ namespace Lab4.Controllers
         // GET: ProjectsManualController
         public ActionResult Index()
         {
+            
+        //    string key = "";
+        //    for (int i = 0; i < Singleton.Instance.DevelopersList[0].colaDeveloper.heapArray.Length; i++)
+        //    {
+        //        if (Singleton.Instance.DevelopersList[0].colaDeveloper.heapArray[0] == Singleton.Instance.DevelopersList[0].colaDeveloper.HeapBuscar[i].prioridad)
+        //        {
+        //            key = Singleton.Instance.DevelopersList[0].colaDeveloper.HeapBuscar[i].titulo;
+        //        }
+        //    }
+
+        // string titulo = Singleton.Instance.DevelopersList[0].HASHTABLE.Pos(FHash(key)).BuscarObjeto(key).titulo;
+        // string descripcion = Singleton.Instance.DevelopersList[0].HASHTABLE.Pos(FHash(key)).BuscarObjeto(key).descripcion;
+        //string proyecto = Singleton.Instance.DevelopersList[0].HASHTABLE.Pos(FHash(key)).BuscarObjeto(key).proyecto;
+        //int prioridad  =    Singleton.Instance.DevelopersList[0].HASHTABLE.Pos(FHash(key)).BuscarObjeto(key).prioridad;
+        //string fecha= Singleton.Instance.DevelopersList[0].HASHTABLE.Pos(FHash(key)).BuscarObjeto(key).fecha;
+
+        //    ProjectsManual AgregarTareas = new ProjectsManual(titulo,descripcion,proyecto,prioridad,fecha);
+            //return View(Singleton.Instance.ProjectsManualList);
             return View(Singleton.Instance.ProjectsManualList);
         }
 
@@ -47,20 +65,10 @@ namespace Lab4.Controllers
                 //Agregar a mi tabla hash
                 Developer nuevo = new Developer(newProjectsManual.titulo, newProjectsManual.descripcion, newProjectsManual.proyecto, newProjectsManual.prioridad, newProjectsManual.fecha);
                 int codigoHash = FHash(nuevo.titulo);//genera el código hash
+                Singleton.Instance.ProjectsManualList.Add(newProjectsManual);
 
-                //Verificar si el titulo no es repetido si no es repetido lo agrega
-                bool Existe = false;
-                Existe = Singleton.Instance.HASHTABLE.Pos(codigoHash).Existe(nuevo.titulo);
-                if (Existe == false)
-                {
-                    Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(nuevo.titulo, nuevo);//Se van almacenando a la tabla hash
-                    Singleton.Instance.ProjectsManualList.Add(newProjectsManual);
-                }
-                else
-                {
-                    //texto que no se agrego porque hay titulo repetido
-                }
-               
+           
+
                 return RedirectToAction(nameof(Index));
             }
             catch
