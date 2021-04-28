@@ -60,7 +60,7 @@ namespace Lab4.Controllers
                     Apellido = collection["Apellido"]
                     
                 };
-                Singleton.Instance.DevelopersList.Add(newDevelopers);
+                Singleton.Instance.DevelopersList.Add(newDevelopers);                
                 return RedirectToAction(nameof(Index));
 
 
@@ -192,20 +192,21 @@ namespace Lab4.Controllers
                                 //parte para agregar en cada iteración ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                                 //Llenar Tablahash
                                 Developer AgregarDeveloper = new Developer(NodoM[0], NodoM[1], NodoM[2], Convert.ToInt16(NodoM[3]), NodoM[4]); //Se crea un objeto developer para agregar a la tabla hash
-                                int codigoHash = FHash(NodoM[0]);//genera el código hash
+                                int codigoHash = FHash(NodoM[0]);//genera el código hash                                
 
                                 //Verificar si el titulo no es repetido si no es repetido lo agrega
                                 bool Existe = false;
                                 Existe = Singleton.Instance.HASHTABLE.Pos(codigoHash).Existe(AgregarDeveloper.titulo);
                                 if (Existe == false)
                                 {
-                                    Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(NodoM[0], AgregarDeveloper);//Se van almacenando a la tabla hash
+                                    //Singleton.Instance.DevelopersList[0].adfadfasd;
+                                    Singleton.Instance.HASHTABLE.Pos(codigoHash).Agregar(NodoM[0], AgregarDeveloper);//Se van almacenando a la tabla hash                                                                          
+                                    Singleton.Instance.DevelopersList[0].colaDeveloper.insertar(Convert.ToInt16(NodoM[3]), NodoM[0]);
                                 }
                             }
                         }
                     }
-                }
-                Console.WriteLine(Singleton.Instance.prioridad);
+                }                
                 Console.ReadKey();
                 return RedirectToAction(nameof(Create));
             }
@@ -231,9 +232,5 @@ namespace Lab4.Controllers
                 conversion = conversion % 10;
                 return conversion;
             }
-
-
-
-
         }
 }

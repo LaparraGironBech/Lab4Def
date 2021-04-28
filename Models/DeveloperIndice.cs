@@ -10,7 +10,7 @@ namespace Lab4.Models
         public int CompareTo(object? obj)
         {
             DeveloperIndice value = (DeveloperIndice)obj;
-            return titulo.CompareTo(value.titulo);
+            return prioridad.CompareTo(value.prioridad);
         }
         public int prioridad { get; set; }
         public string titulo { get; set; }

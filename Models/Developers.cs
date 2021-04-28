@@ -16,8 +16,8 @@ namespace Lab4.Models
         [Required]
         public string Apellido { get; set; }
 
-
-        
+        public ColaDePrioridad colaDeveloper = new ColaDePrioridad(20);
+              
     }
     
 }
