@@ -28,7 +28,7 @@ namespace Lab4.Controllers
         // GET: DeveloperController
         public ActionResult Index()
         {
-            
+
             return View(Singleton.Instance.DevelopersList);
         }
 
@@ -37,7 +37,7 @@ namespace Lab4.Controllers
         {
             var ViewDevelopers = Singleton.Instance.DevelopersList.Find(x => x.Id == id);
             return View(ViewDevelopers);
-            
+
         }
 
         // GET: DeveloperController/Create
@@ -58,13 +58,13 @@ namespace Lab4.Controllers
                     Id = Convert.ToInt32(collection["Id"]),
                     Nombre = collection["Nombre"],
                     Apellido = collection["Apellido"]
-                    
+
                 };
-                Singleton.Instance.DevelopersList.Add(newDevelopers);                
+                Singleton.Instance.DevelopersList.Add(newDevelopers);
                 return RedirectToAction(nameof(Index));
 
 
-                
+
             }
             catch
             {
@@ -118,7 +118,7 @@ namespace Lab4.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
-           
+
             if (postedFile != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "Uploads");
@@ -206,36 +206,34 @@ namespace Lab4.Controllers
                             }
                         }
                     }
-                }                
+                }
                 Console.ReadKey();
                 return RedirectToAction(nameof(Create));
-                }
-               // Console.WriteLine(Singleton.Instance.prioridad);
-               // Console.ReadKey();
-               return RedirectToAction(nameof(Index));
-                //return View();
             }
-
-
-            return View();
-
+            // Console.WriteLine(Singleton.Instance.prioridad);
+            // Console.ReadKey();
+            return RedirectToAction(nameof(Index));
+            //return View();
         }
-            //termina carga de csv------->
-            public int FHash(string titulo)// Nuestra función hash
+               
+        //termina carga de csv------->
+        public int FHash(string titulo)// Nuestra función hash
+        {
+
+            titulo = titulo.ToLower(); //convertir todo a minuscula 
+            int conversion = 0; //devolverá el valor en número
+            char letra; // detecta letra por letra de la cadena
+            for (int i = 0; i < titulo.Length; i++)
             {
+                letra = Convert.ToChar(titulo.Substring(i, 1));
+                conversion = conversion + Convert.ToInt32(letra);
 
-                titulo = titulo.ToLower(); //convertir todo a minuscula 
-                int conversion = 0; //devolverá el valor en número
-                char letra; // detecta letra por letra de la cadena
-                for (int i = 0; i < titulo.Length; i++)
-                {
-                    letra = Convert.ToChar(titulo.Substring(i, 1));
-                    conversion = conversion + Convert.ToInt32(letra);
-
-                }
-
-                conversion = conversion % 10;
-                return conversion;
             }
+
+            conversion = conversion % 10;
+            return conversion;
         }
+    }
+
 }
+
